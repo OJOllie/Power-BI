@@ -21,3 +21,19 @@ The APIs covered in this guide are the OS Maps API & OS Vector Tile API for the 
 
 •	R- use an R script to bring in OS Places API.
 
+
+##Mapbox
+
+Mapbox works with the OS Vector Tile API. First, bring in some data into Power BI or the visual will not work. Then, click on import visual and find the Map Box Visual:
+
+![image](https://user-images.githubusercontent.com/97096971/220371965-b14c9a43-b2c4-4930-8aac-8ca6a5516052.png)
+
+The Mapbox Visual will now appear in your build visual options tab. Click on it to bring in the visual and settings page. Add your longitude, latitude and location (this can be any field) and the visual will outline instructions on getting your Mapbox access token. You may need to set your latitude and longitude to ‘do not summarise’.
+
+![image](https://user-images.githubusercontent.com/97096971/220372513-cce5d563-ef5d-44b3-9645-191f6c722574.png)
+
+Navigate to the format visualisations tab and add in the access code. Change the Map Style to custom. Add in your OS Vector Tile API URL into the style and Mapbox API URL. An example of the URL is https://api.os.uk/maps/vector/v1/vts/resources/styles?key=[]&srs=27700. You will need to add in your own API key. This is obtained from the Data Hub 
+(https://osdatahub.os.uk/docs/vts/overview). 
+
+You will now have a visual with the OS Vector Tile API in your dashboard: 
+
