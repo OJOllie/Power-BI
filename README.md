@@ -182,6 +182,6 @@ This will create a custom visual within the dist folder of your project. Import 
 
 ![image](https://user-images.githubusercontent.com/97096971/220667371-5901fd5f-38bc-46dd-aacb-17eb9c6ab553.png)
 
-![image](https://user-images.githubusercontent.com/97096971/220670730-13a303f3-30ab-4953-b9a0-0cd1f1b60363.png)
+![image](https://user-images.githubusercontent.com/97096971/220679940-f7be2021-b9c6-47c0-80aa-faa74ca6bfe8.png)
 
 More documentation can be found in the documentation saved in the R custom visual folder.
