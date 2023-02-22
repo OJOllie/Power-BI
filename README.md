@@ -202,7 +202,142 @@ Once this is done you will be able to bring in basemaps and content from your ac
 
 ![image](https://user-images.githubusercontent.com/97096971/220687923-3288e9db-85fd-4c9c-bc54-4bf49909c8e4.png)
 
-# 6.	Cadcorp SIS WebMap for Power BI
+# Cadcorp SIS WebMap for Power BI
 
+The CadCorp custom visual can be used with the CadCorp SIS Webmap software to create pull in OS APIs. The data from your webmap can be pulled in using the custom visual, including the OS APIs. Information on adding the APIs to your webmap can be found here https://help.cadcorp.com/en/9.0/webmapadmin/layers-osdatahub-wmts.htm?Highlight=OS%20maps%20api. 
+
+To show the webmap in to Power BI click on import a visual from a file in the visualisation pane.
+
+![image](https://user-images.githubusercontent.com/97096971/220698540-ba2c9965-ea3f-42d4-a5b8-8df6741231fe.png)
+
+Point it to your CadCorp SIS Webmap for Power BI visual. This will appear in your visual tab. Bring this in to your report and add X Y data to activate the visual. Follow the instructions in the visual.
+
+![image](https://user-images.githubusercontent.com/97096971/220698591-3f3b0090-3949-47df-81d1-8156d5bdf712.png)
+
+After adding your in service URL for your webmap, the map will appear in the report with any OS APIs you have included.
+
+# Power Query- OS Places API
+
+There are multiple ways to bring OS Places API into Power BI. Each way must be able to page through the API results or only the first 100 features will be returned by the API call. This section will run through how to get OS Places API in Power BI using power query. 
+
+Bring in the data using your API URL. Include the offset parameter in your URL so it can be parameterised by Power Query at a later stage:
+
+https://api.os.uk/search/places/v1/postcode?postcode=CF11&offset=0
+
+To do this use the get data option and choose web:
+
+![image](https://user-images.githubusercontent.com/97096971/220698835-3e6185c6-2f3b-45f9-bdcc-b2f892a0f8e3.png)
+
+Choose the advanced option. Include your API key as a header with ‘key’ as the header request:
+
+![image](https://user-images.githubusercontent.com/97096971/220698863-f21a7626-fb04-4643-be59-439de4bd2323.png)
+
+This will pull the first 100 results of the API call into Power Query. From here we want to parameterise the offset part of the URL. Under the home tab choose manage parameters and select new. 
+
+![image](https://user-images.githubusercontent.com/97096971/220698892-df1df14c-17c3-4871-b006-e48aac11019e.png)
+
+Call the new parameter offset, give it a type of text and set the current value to zero.
+
+![image](https://user-images.githubusercontent.com/97096971/220698940-0013fda6-0436-4a0f-ba64-dd3dba6ee161.png)
+
+Your offset parameter will now appear in other queries. Next, navigate to the query that is calling and processing the OS Places API, click the view tab and choose advanced editor.
+
+![image](https://user-images.githubusercontent.com/97096971/220698988-ae11b647-68e1-4562-85a4-bc80ebe3f489.png)
+
+Include the offset parameter in the URL. As the current value is set to one the query should run as normal for now.
+
+![image](https://user-images.githubusercontent.com/97096971/220699027-562ea2d8-8007-4747-a156-bc11b563bb39.png)
+
+To be able to change the parameter, change the whole query to a function. Right click your query and choose create function, call it fnpaging or similar. 
+
+![image](https://user-images.githubusercontent.com/97096971/220699054-30e4c828-04d5-4c92-8a8c-5d9ec4d53e50.png)
+
+The function can be invoked by changing the offset parameter and clicking invoke. For example if we change the offset value to 100 the next 100 results will appear as a new query.
+
+![image](https://user-images.githubusercontent.com/97096971/220699101-8626be0a-536a-495d-821c-c96c182c7e4d.png)
+
+The function can also be called against a column with offset values (e.g 100, 200, 300, 400) to pull back all the results in one go. But for now, we will invoke the function three times with values 100, 200, 300 and 400 and rename the tables to something sensible. 
+
+![image](https://user-images.githubusercontent.com/97096971/220699134-9e89ce31-ce6d-44e0-aead-85c2db5010b3.png)
+
+Next, under the home tab choose append queries as new.
+
+![image](https://user-images.githubusercontent.com/97096971/220699166-a85bcca1-f25d-4592-892a-173e61031270.png)
+
+Select all of your offset queries and append them together.
+
+![image](https://user-images.githubusercontent.com/97096971/220699207-7c2a0d8b-04c3-4433-b0ac-defac99d8910.png)
+
+Rename the appended query to ‘results’. In this case, the results table contains the first 500 features returned by the OS Places API for a particular postcode. More offset queries can be added to increase this amount. 
+
+# Python- OS Places API
+
+Choose get data and more. Search python script and select that option.
+
+![image](https://user-images.githubusercontent.com/97096971/220699631-70b81c79-199c-45cd-98a9-18efdd0c46d6.png)
+
+Paste the following script into the window, substituting your API key and your chosen parameters for the OS Places API call:
+
+    # Import packages
+    import pandas as pd
+    import requests as r
+
+    # Define API parameters
+    key = 'enter API key here'
+    query = 'enter OS Places query here (e.g EX4)'
+    url = f'https://api.os.uk/search/places/v1/find?query={query}&key={key}'
+    dataframe = pd.DataFrame()
+
+    # Make API requests with offsets and concatenate results
+    offsets = range(0, 1000, 100)
+    for offset in offsets:
+        url = f'https://api.os.uk/search/places/v1/find?query={query}&offset={offset}&key={key}'
+        response = r.get(url)
+        response.raise_for_status()  # Check for errors
+        results = response.json()['results']
+        page = pd.json_normalize(results)
+        dataframe = pd.concat([dataframe, page])
+        
+    # Delete page so only main dataframe is detected by PowerBI 
+    del page
+
+Load in the dataframe.
+
+![image](https://user-images.githubusercontent.com/97096971/220700729-b3ed2b77-d529-4cd0-b7bb-a4281148fc96.png)
+
+This will have loaded in the first 1000 results from the API call. The number of results can be adjusted by changing the maximum range value in the script.
+
+# R- OS Places API
+
+Choose get data and more. Search R script and select that option.
+
+![image](https://user-images.githubusercontent.com/97096971/220700859-1328c4ab-3ec7-49b6-adf0-5f2105699628.png)
+
+Paste the following script into the window, substituting your API key and your chosen parameters for the OS Places API call:
+
+    # Import packages
+    library("httr")
+    library("jsonlite") 
+    library('gtools')
+
+    # Define API parameters
+    key <- 'FzR8BJRJvs5f1w0FaGOQk5mdwQrOwBhe'
+    query <- 'CF11'
+
+    # Define empty dataframe and offset. Change second value to increase number of results.
+    offset= seq(0, 900, by=100)
+    dataframe = data.frame()
+
+    # Make API requests with offsets and concatenate results
+    for (value in offset) {
+      url <- paste0('https://api.os.uk/search/places/v1/find?query=',query,'&offset=',value)
+      data <- GET(url,add_headers(key=key))
+      json <- fromJSON(rawToChar(data$content), flatten=TRUE) 
+      dataframe <- smartbind(dataframe,json$results)
+    }
+
+![image](https://user-images.githubusercontent.com/97096971/220700960-e89ac77a-3af4-49e5-9183-86e7d6a91fc8.png)
+
+This will have loaded in the first 1000 results from the API call. The number of results can be adjusted by changing the maximum range value for offset in the script.
 
 
