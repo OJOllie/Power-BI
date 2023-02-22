@@ -53,7 +53,7 @@ You will now have a visual with the OS Maps API in your dashboard:
 
 ## Custom visuals using R 
 
-Power BI supports both R and Python. R has the ability to create a custom, interactive html visual. This section will run through the steps to achieve this. The data required is in the ' R custom visual files' folder. It will require the installation of node.js and will produce a html visual that is customisable with R, offering varying degrees of interactivity within powerBI. The following method was created by the Welsh Ambulance Service NHS Trust. 
+Power BI supports both R and Python. R has the ability to create a custom, interactive html visual. This section will run through the steps to achieve this. The data required is in the ' R custom visual files' folder. It will require the installation of node.js and will produce a html visual that is customisable with R, offering varying degrees of interactivity within powerBI. The following method was created by the Welsh Ambulance Service NHS Trust. Further documentation from NHS Wales Modelling Collaberative can be found [here(https://github.com/OJOllie/Power-BI/blob/main/R%20Custom%20Visual%20Data/Documentation.Md).
 
 Install the JavaScript server node.js from here. This will require administrator permissions on your machine. 
 
@@ -185,3 +185,24 @@ This will create a custom visual within the dist folder of your project. Import 
 ![image](https://user-images.githubusercontent.com/97096971/220679940-f7be2021-b9c6-47c0-80aa-faa74ca6bfe8.png)
 
 More documentation can be found in the documentation saved in the R custom visual folder.
+
+# ArcGIS Maps for Power BI 
+
+ArcGIS Maps for Power BI works with APIs due to its link to ArcGIS Online (AGOL). You will need an ESRI enterprise licence or an AGOL account to access this. Maps you have within your AGOL account can be imported into Power BI. This includes basemapping from OS Maps API if your organisation has set these up as an option with your enterprise account. 
+
+Add in an ArcGIS Maps for Power BI visualization. 
+
+![image](https://user-images.githubusercontent.com/97096971/220687809-e12b5918-a012-4bfe-8787-fa6238b5abdc.png)
+
+This will display a sign in portal where you need to input your credentials.
+
+![image](https://user-images.githubusercontent.com/97096971/220687865-2ed830fc-8cc0-4ac8-add9-d15b1ef36f8e.png)
+
+Once this is done you will be able to bring in basemaps and content from your account, including OS APIs you have as basemaps within AGOL
+
+![image](https://user-images.githubusercontent.com/97096971/220687923-3288e9db-85fd-4c9c-bc54-4bf49909c8e4.png)
+
+# 6.	Cadcorp SIS WebMap for Power BI
+
+
+
