@@ -94,11 +94,17 @@ Notes on how to do this can be found [here](https://radacad.com/interactive-char
 Microsoft keep a log of the [Microsoft R (MRAN) release history](https://mran.microsoft.com/release-history), this allows install of past MRAN versions. This makes it easier to test visuals.
 
 You can still use the most recent version of Microsoft R or R for some things, and MRAN 3.4.4 for visualisations that will go into PowerBI by changing the global options within RStudio
+
 ![image](https://user-images.githubusercontent.com/97096971/220686903-24302c7b-ec89-49a4-ba6d-bb029a273833.png)
+
 Global options can be found in the Tools tab
+
 ![image](https://user-images.githubusercontent.com/97096971/220686936-c1d8ff19-70ee-4a39-a4bb-4adcbb840ee7.png)
+
 You can change the R version you are using
+
 ![image](https://user-images.githubusercontent.com/97096971/220686976-483c937d-5cc8-4db5-93c5-8df683ece593.png)
+
 Pick any of your downloaded R versions to use in the session
 
 ## More information
@@ -110,27 +116,35 @@ https://radacad.com/create-custom-visual-with-r-and-json-part-4
 ## Appendix 1 - resources mentioned and used in this document
 
 Microsoft essential information on creating visuals made using R packages in PowerBI:
+
 https://docs.microsoft.com/en-us/power-bi/connect-data/service-r-packages-support
 
 Microsoft R (MRAN) release history, allows install of past MRAN versions. This makes it easier to test visuals, as you can download this version and use it to test visuals by swapping R version in use in your global options (mentioned in the tips section):
+
 https://mran.microsoft.com/release-history
 
 Microsoft has a ‘time machine’ which allows you to examine the different MRAN releases and look at the information at the time of release:
+
 https://mran.microsoft.com/timemachine
 
 Specific packages in CRAN when MRAN 3.4.4 was uploaded (2018-14-01):
+
 https://cran.microsoft.com/snapshot/2018-04-01/web/packages/available_packages_by_name.html
 
 Where the process we have outlined comes from - a blog by Leila Etaati:
+
 https://radacad.com/interactive-map-using-r-and-power-bi-create-custom-visual-part-1
 
 Reference in the blog this was made from, detailing pbiviz PowerBI Visual Tools:
+
 https://www.npmjs.com/package/powerbi-visuals-tools
 
 Required install is from here:
+
 https://nodejs.org/
 
 Information on customising visuals can be found in these follow-up blogs by Leila Etaati
+
 https://radacad.com/interactive-charts-using-r-and-power-bi-create-custom-visual-part-2
 
 https://radacad.com/create-custom-visual-with-r-and-json-part3
