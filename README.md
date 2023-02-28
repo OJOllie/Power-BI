@@ -324,8 +324,8 @@ Paste the following script into the window, substituting your API key and your c
     library('gtools')
 
     # Define API parameters
-    key <- 'FzR8BJRJvs5f1w0FaGOQk5mdwQrOwBhe'
-    query <- 'CF11'
+    key <- 'Insert Key Here'
+    query <- 'Enter OS Places query here (e.g EX4)'
 
     # Define empty dataframe and offset. Change second value to increase number of results.
     offset= seq(0, 900, by=100)
