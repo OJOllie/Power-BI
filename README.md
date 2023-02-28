@@ -56,7 +56,7 @@ You will now have a visual with the OS Maps API in your dashboard:
 
 ## Custom visuals using R 
 
-Power BI supports both R and Python. R has the ability to create a custom, interactive html visual. This section will run through the steps to achieve this. The data required is in the ' R custom visual files' folder. It will require the installation of node.js and will produce a html visual that is customisable with R, offering varying degrees of interactivity within powerBI. The following method was created by the Welsh Ambulance Service NHS Trust. Further documentation from NHS Wales Modelling Collaberative can be found [here(https://github.com/OJOllie/Power-BI/blob/main/R%20Custom%20Visual%20Data/Documentation.Md).
+Power BI supports both R and Python. R has the ability to create a custom, interactive html visual. This section will run through the steps to achieve this. The data required is in the ' R custom visual files' folder. It will require the installation of node.js and will produce a html visual that is customisable with R, offering varying degrees of interactivity within powerBI. The following method was created by the Welsh Ambulance Service NHS Trust. Further documentation from NHS Wales Modelling Collaberative can be found [here](https://github.com/OJOllie/Power-BI/blob/main/R%20Custom%20Visual%20Data/Documentation.Md).
 
 Install the JavaScript server node.js from here. This will require administrator permissions on your machine. 
 
