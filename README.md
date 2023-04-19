@@ -93,7 +93,7 @@ The script source file can be altered to use different R scripts and create diff
 
     # Import data from csv
 
-    dataset  <- read.csv("C:/Users/obowden/OneDrive - Ordnance Survey/PowerBI/R/sampleRHTMLVis/wmc_hospital_locations_2021_11_18.csv")
+    dataset  <- read.csv("insert file path")
 
     # Create a list of labels
 
