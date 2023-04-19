@@ -56,7 +56,7 @@ You will now have a visual with the OS Maps API in your dashboard:
 
 ## Custom visuals using R 
 
-Power BI supports both R and Python. R has the ability to create a custom, interactive html visual. This section will run through the steps to achieve this. The data required is in the ' R custom visual files' folder. It will require the installation of node.js and will produce a html visual that is customisable with R, offering varying degrees of interactivity within powerBI. The following method was created by the Welsh Ambulance Service NHS Trust. Further documentation from NHS Wales Modelling Collaberative can be found [here](https://github.com/OJOllie/Power-BI/blob/main/R%20Custom%20Visual%20Data/Documentation.Md).
+Power BI supports both R and Python. R has the ability to create a custom, interactive html visual. This section will run through the steps to achieve this. The data required is in the ' R custom visual files' folder. It will require the installation of node.js and will produce a html visual that is customisable with R, offering varying degrees of interactivity within powerBI. The following method was created by the Welsh Ambulance Service NHS Trust. Further documentation from NHS Wales Modelling Collaberative can be found [here](https://github.com/OJOllie/Power-BI/blob/main/R%20Custom%20Visual%20Data/Documentation.Md). Data for this specific example can be found [here] (https://github.com/OJOllie/Power-BI/tree/main/R%20Custom%20Visual%20Data).
 
 Install the JavaScript server node.js from here. This will require administrator permissions on your machine. 
 
@@ -93,7 +93,7 @@ The script source file can be altered to use different R scripts and create diff
 
     # Import data from csv
 
-    dataset  <- read.csv("insert file path")
+    dataset  <- read.csv("insert file path to hospital locations")
 
     # Create a list of labels
 
@@ -103,8 +103,8 @@ The script source file can be altered to use different R scripts and create diff
     "Type: ",dataset[i, "Service"], '</p>' )#Type of hospital taken from Service column
     })
     marker_icon <-  icons(iconUrl = ifelse(dataset$Service == "Major A&E",#Create a list of icons dependant on the Service column
-    "C:/Users/obowden/OneDrive - Ordnance Survey/PowerBI/R/sampleRHTMLVis/hospital-fill.png",
-    "C:/Users/obowden/OneDrive - Ordnance Survey/PowerBI/R/sampleRHTMLVis/hospital-line.png"),
+    "insert file path to hospital-fill.png",
+    "insert file path to hospital-line.png"),
     iconWidth = 20, iconHeight = 20)
 
     # API key for Ordnance Survey maps
